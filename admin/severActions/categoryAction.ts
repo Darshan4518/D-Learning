@@ -2,6 +2,7 @@
 
 import { connectDB } from "@/lib/db";
 import { Category } from "@/models/category";
+import { revalidatePath } from "next/cache";
 
 export const createCategory = async (formdata: FormData) => {
   const category = formdata.get("category") as string;
@@ -10,6 +11,7 @@ export const createCategory = async (formdata: FormData) => {
     await Category.create({
       category: category.toLowerCase().trim(),
     });
+    revalidatePath("/category");
     return JSON.parse(JSON.stringify(category));
   } catch (error) {
     console.log(error);
@@ -43,6 +45,7 @@ export const updateCategory = async (formdata: FormData, id: string) => {
     await Category.findByIdAndUpdate(id, {
       category: category.toLowerCase().trim(),
     });
+    revalidatePath("/category");
   } catch (error) {
     console.log(error);
   }

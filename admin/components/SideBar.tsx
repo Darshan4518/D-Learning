@@ -11,25 +11,28 @@ const SideBar = () => {
           className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
         >
           <Home className="h-5 w-5" />
-          Dashboard
+          <span className=" sm:block hidden">Dashboard</span>
         </Link>
         <Link
           href="#"
           className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
         >
-          <User className="h-5 w-5" /> Students
+          <User className="h-5 w-5" />
+          <span className=" sm:block hidden">Students</span>
         </Link>
         <Link
           href="/categories"
           className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
         >
-          <CheckSquare className="h-5 w-5" /> Category
+          <CheckSquare className="h-5 w-5" />
+          <span className=" sm:block hidden">Category</span>
         </Link>
         <Link
           href="/courses"
           className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
         >
-          <Book className="h-5 w-5" /> Courses
+          <Book className="h-5 w-5" />
+          <span className=" sm:block hidden">Courses</span>
         </Link>
       </nav>
     </div>

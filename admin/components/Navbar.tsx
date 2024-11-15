@@ -1,12 +1,4 @@
-import {
-  Book,
-  BookCopy,
-  Heart,
-  IdCard,
-  LogOut,
-  Settings,
-  ShoppingBagIcon,
-} from "lucide-react";
+import { BookCopy } from "lucide-react";
 import React from "react";
 import { Input } from "./ui/input";
 import Link from "next/link";
@@ -17,7 +9,7 @@ const Navbar = () => {
   const isLogined = true;
 
   return (
-    <header className=" sticky top-0 z-50 bg-white  ">
+    <header className=" sticky top-0 z-50 bg-white ">
       <nav className=" p-4 md:px-10 flex items-center justify-between">
         <div className=" flex items-center gap-4">
           <h1 className=" font-bold flex gap-2">

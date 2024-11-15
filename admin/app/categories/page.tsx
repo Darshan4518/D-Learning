@@ -3,7 +3,7 @@ import { CategoryModal } from "@/components/CategoryModel";
 import { CategoryUpdateModal } from "@/components/CategoryUpdateDailog";
 import { deleteCategory, getAllCategory } from "@/severActions/categoryAction";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Edit2, Trash2 } from "lucide-react";
+import { Edit2, Loader2, Trash2 } from "lucide-react";
 import React, { useState } from "react";
 
 export type Category = {
@@ -17,7 +17,7 @@ const Categories = () => {
     category: "",
   });
   const [open, setOpen] = useState(false);
-  const { data } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => await getAllCategory(),
     staleTime: 300000,
@@ -50,24 +50,30 @@ const Categories = () => {
         <CategoryModal />
       </div>
       <div className=" my-10 flex items-center gap-2 flex-wrap">
-        {data?.map((category: Category, ind: number) => (
-          <div
-            key={ind}
-            className=" p-3 px-5 border gap-3 border-gray-200 rounded-md max-w-xs flex justify-between items-center"
-          >
-            <span className=" capitalize">{category?.category}</span>
-            <div className=" flex items-center gap-3">
-              <Edit2
-                className=" size-5 cursor-pointer"
-                onClick={() => handleCategory(category)}
-              />
-              <Trash2
-                className=" size-5 cursor-pointer"
-                onClick={() => deleteMutation.mutate(category?._id)}
-              />
-            </div>
+        {isPending && (
+          <div className=" mx-auto my-10">
+            <Loader2 className=" animate-spin " />
           </div>
-        ))}
+        )}
+        {!isPending &&
+          data?.map((category: Category, ind: number) => (
+            <div
+              key={ind}
+              className=" p-3 px-5 border gap-3 border-gray-200 rounded-md max-w-xs flex justify-between items-center"
+            >
+              <span className=" capitalize">{category?.category}</span>
+              <div className=" flex items-center gap-3">
+                <Edit2
+                  className=" size-5 cursor-pointer"
+                  onClick={() => handleCategory(category)}
+                />
+                <Trash2
+                  className=" size-5 cursor-pointer"
+                  onClick={() => deleteMutation.mutate(category?._id)}
+                />
+              </div>
+            </div>
+          ))}
       </div>
       <CategoryUpdateModal
         open={open}

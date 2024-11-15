@@ -15,7 +15,6 @@ import { Category } from "@/app/categories/page";
 
 export function CategoryModal() {
   const queryclient = useQueryClient();
-
   const createMutation = useMutation({
     mutationFn: async (formdData: FormData) => await createCategory(formdData),
     onSuccess: (data) => {
@@ -43,7 +42,7 @@ export function CategoryModal() {
             <form action={(FormData) => createMutation.mutate(FormData)}>
               <Input placeholder=" Enter Category" name="category" />
               <div className=" w-full flex justify-center my-5">
-                <Button className=" ">Submit</Button>
+                <Button className="">Submit</Button>
               </div>
             </form>
           </ModalContent>
